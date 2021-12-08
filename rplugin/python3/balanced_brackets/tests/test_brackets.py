@@ -31,3 +31,6 @@ def test_find_coords():
     ]
     output = brackets.find_coords(buf)
     assert output == [(0,0), (1,0), (2,2)]
+    brackets.where_brackets_imbalanced.return_value = [1, 5, 9]
+    output = brackets.find_coords(buf)
+    assert output == [(1,0), (3,1), (2,2)]
