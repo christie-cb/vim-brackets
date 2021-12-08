@@ -26,6 +26,4 @@ Run:
 
 ## Use
 
-```
-:call HighlightImbalancedBrackets()
-```
+Imbalanced brackets will be highlighted upon exiting Insert mode.
