@@ -3,12 +3,9 @@ from brackets import Brackets
 # python3 -m pytest -v tests/test_brackets.py
 
 def test_where_brackets_imbalanced():
-    """
-    Want to test that we'll get the index of any parentheses
-    missing either a matching open or a matching close
-    """
-    line = "{{{]"
     brackets = Brackets()
+
+    line = "{{{]"
     output = brackets.where_brackets_imbalanced(line)
     assert output == [0, 1, 2, 3]
 
