@@ -21,6 +21,11 @@ def test_where_brackets_imbalanced():
     code_output = brackets.where_brackets_imbalanced(code)
     assert code_output == [len(code)-9]
 
+    brack = "{"
+    brack_output = brackets.where_brackets_imbalanced(brack)
+    assert brack_output == [0]
+
+
 
 def test_find_coords():
     brackets = Brackets()
