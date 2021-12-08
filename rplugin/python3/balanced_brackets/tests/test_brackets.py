@@ -16,9 +16,14 @@ def test_where_brackets_imbalanced():
     balanced_output = brackets.where_brackets_imbalanced(balanced_line)
     assert balanced_output == []
 
-    nearly_balanced_line = "{{[([)]}}"
+    nearly_balanced_line = "{{[(])]}}"
     nearly_balanced_output = brackets.where_brackets_imbalanced(nearly_balanced_line)
     assert nearly_balanced_output == [4]
+
+    code = "{(() =>  cool_function('some stuff');}, 3000)}"
+    code_output = brackets.where_brackets_imbalanced(code)
+    assert code_output == [len(code)-9]
+
 
 def test_find_coords():
     brackets = Brackets()

@@ -1,5 +1,4 @@
-import typing
-from typing import Optional, List, Tuple
+from typing import List, Tuple
 
 class Brackets():
     def __init__(self):
@@ -21,10 +20,7 @@ class Brackets():
                 if self.brackets[opening] != item:
                     return False
         return True
-    """
-    Given a string, return the indices of parentheses that don't have a matching
-    closing bracket or don't have a matching opening bracket.
-    """
+
     def where_brackets_imbalanced(self, line: str) -> List[int]:
         stack = [] # (i, bracket)
         imbalanced = []
@@ -37,10 +33,11 @@ class Brackets():
                 if len(stack) == 0:
                     imbalanced.append(item_tuple)
                     continue
-                opening_tuple = stack.pop(-1)
+                opening_tuple = stack[-1]
                 if self.brackets[opening_tuple[1]] != item:
-                    imbalanced.append(opening_tuple)
                     imbalanced.append(item_tuple)
+                else:
+                    stack.pop(-1)
         if len(stack) != 0:
             imbalanced = stack + imbalanced
         return sorted([idx for idx, item in imbalanced])
@@ -62,5 +59,4 @@ class Brackets():
                 if len(hl) == 0:
                     return output
             cum_row_len += row_len
-            print(cum_row_len)
         return output
