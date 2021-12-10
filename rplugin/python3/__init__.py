@@ -12,6 +12,13 @@ class BalancedBrackets():
         self.highlight_src = self.nvim.new_highlight_source()
 
     @pynvim.autocmd("InsertLeave")
+    def highlight_on_insert_leave(self):
+        self.highlight_imbalanced_brackets()
+
+    @pynvim.autocmd("TextChanged")
+    def highlight_on_text_changed(self):
+        self.highlight_imbalanced_brackets()
+
     def highlight_imbalanced_brackets(self):
         self.nvim.current.buffer.clear_highlight(src_id=self.highlight_src)
         current_buffer = ''.join(self.nvim.current.buffer)
@@ -20,8 +27,3 @@ class BalancedBrackets():
         highlight_coords = self.brackets.find_coords(self.nvim.current.buffer)
         for x, y in highlight_coords:
             self.nvim.current.buffer.add_highlight("Error", y, x, x+1, src_id=self.highlight_src)
-
-    @pynvim.autocmd("InsertCharPre", eval='v:char', sync=True)
-    def autocomplete_brackets(self, char):
-        if char in self.brackets.brackets.keys():
-            self.nvim.feedkeys(self.brackets.brackets[char], options="i")
