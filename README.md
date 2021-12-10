@@ -1,7 +1,7 @@
 # vim-brackets
 
 A Neovim plugin to highlight imbalanced brackets.
-
+![](https://giphy.com/gifs/QiiKrC822ZjDHkt42y)
 ## Install
 
 Update Python in your init.vim (usually found here: `~/.config/nvim/init.vim`)
